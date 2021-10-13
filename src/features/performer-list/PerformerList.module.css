@@ -1,0 +1,5 @@
+.performer {
+    grid-column: 1;
+    grid-row: 4;
+    text-align: center;
+}

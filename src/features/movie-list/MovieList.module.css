@@ -1,0 +1,12 @@
+.movieList {
+    grid-column: 2 / 3;
+    grid-row: 2/4;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.movieItem {
+    padding-left: 10%;
+    padding-top: 10px;
+
+}

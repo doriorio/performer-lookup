@@ -1,0 +1,17 @@
+.performerSearch {
+    grid-column-start: 1;
+    grid-row-start: 1 ;
+}
+
+.input {
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid #2900F6;
+    font-size: small;
+}
+
+.performerSuggestions {
+    grid-column: 1 ;
+    grid-row: 2;
+    width: 100%;
+}
