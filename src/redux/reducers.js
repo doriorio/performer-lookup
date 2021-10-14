@@ -10,7 +10,9 @@ const inputReducer = createSlice({
     initialState,
     reducers: {
         addInput: (state, action) => {
-            var currentState = action.payload.performerData;
+            // var currentState = action.payload.performerData;
+            var currentState = action.payload.results;
+            console.log(currentState)
             return {
                 input: currentState
             }
@@ -27,7 +29,7 @@ const inputReducer = createSlice({
 
             return {
                 selectedPerformers: selectedPerformer,
-                movies: selectedPerformer.performer.movies
+                movies: selectedPerformer.movies
             }
 
         },

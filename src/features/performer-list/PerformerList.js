@@ -29,6 +29,8 @@ const PerformerList = (props) => {
         return props.removeSelectedPerformer(performer);
     }
 
+    console.log(props.selectedPerformers)
+
     const performer = props.selectedPerformers;
     return (
        <div className={styles.performer}>

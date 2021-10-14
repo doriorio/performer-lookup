@@ -27,22 +27,27 @@ const mapDispatchToProps = (dispatch) => {
 const SearchInputs = (props) => {
     const [input, setInput] = useState('');
 
-    const searchPerformers = (evt) => {
+    async function searchPerformers(evt) {
         if (!evt.target.value) return;
 
         var query = evt.target.value;
         
-       let data = getResults(query, getDataOut);
+        let data = await getResults(query);
+
+        getDataOut(data);
+
+        
     };
     
 
     const getDataOut = (results) => {
-        var performerData = processResults(results);
         props.addInput({
-            performerData
+            results
         });
-        setInput(performerData);
-        return performerData;
+
+        setInput(results);
+        
+
     };
 
 
@@ -56,6 +61,7 @@ const SearchInputs = (props) => {
             name: current
             
         });
+        
         document.getElementById('searchPerformers').value = '';
         setInput(null);
     }
@@ -67,12 +73,12 @@ const SearchInputs = (props) => {
         {input && 
         
         <ListGroup id="performerSelect" className={styles.performerSuggestions}>
-            {input &&  Object.entries(input).map((performer, idx) => (
+            {input &&  input.map((performer, idx) => (
                 <ListGroupItem 
                 key={idx}>
-                    {performer[0]} 
-                <Badge onClick={pickPerformer.bind(performer[0])} 
-                data-performer={performer[0]} 
+                    {performer.name} 
+                <Badge onClick={pickPerformer.bind(performer.name)} 
+                data-performer={performer.name} 
                 className={styles.selectItem} bg="success">+</Badge>
                 </ListGroupItem>
                 )
@@ -80,7 +86,8 @@ const SearchInputs = (props) => {
             
             </ListGroup>       
         
-    }
+    } 
+        
     </div>
 
     );
