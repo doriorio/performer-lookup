@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
-import { addInput, removeInput, addSelectedPerformer, removeSelectedPerformer } from '../../redux/reducers'
+// import { addInput, removeInput, addSelectedPerformer, removeSelectedPerformer } from '../../redux/reducers'
+import { addSelectedPerformer, removeSelectedPerformer } from '../../redux/reducers'
 import styles from './SearchInput.module.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
@@ -9,15 +10,15 @@ import Badge from 'react-bootstrap/Badge';
 
 const mapStateToProps = (state) => {
     return {
-        input: state.input,
+        // input: '',
         selectedPerformers: state.selectedPerformers
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addInput: (obj) => dispatch(addInput(obj)),
-        removeInput: () => dispatch(removeInput()),
+        // addInput: (obj) => dispatch(addInput(obj)),
+        // removeInput: () => dispatch(removeInput()),
         addSelectedPerformer: (obj) => dispatch(addSelectedPerformer(obj)),
         removeSelectedPerformer: (obj) => dispatch(removeSelectedPerformer(obj))
     };
@@ -26,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const SearchInputs = (props) => {
     const [input, setInput] = useState('');
+    const [selectedPerformers, selectPerformer] = useState('');
 
     async function searchPerformers(evt) {
         if (!evt.target.value) return;
@@ -41,9 +43,9 @@ const SearchInputs = (props) => {
     
 
     const getDataOut = (results) => {
-        props.addInput({
-            results
-        });
+        // props.addInput({
+        //     results
+        // });
 
         setInput(results);
         
@@ -53,15 +55,26 @@ const SearchInputs = (props) => {
 
 
     const pickPerformer = (evt) => {
+        console.log(' pick performer!!!!')
 
         var current = evt.target.getAttribute('data-performer');
-        var performer = input[current];
+        // var performer = input[current];
+        
+        let performer = input.filter((perf) => perf.name == current);
+        console.log(performer);
+        
+        // let selectedPerformers = [performer, props.selectedPerformers];
+        let currentlySelectedPerformers = performer[0];
+
+
         props.addSelectedPerformer({
-            performer: performer,
-            name: current
+            // performer: performer,
+            performer: currentlySelectedPerformers,
+            prevPerformer: selectedPerformers
             
         });
-        
+
+        selectPerformer(currentlySelectedPerformers);
         document.getElementById('searchPerformers').value = '';
         setInput(null);
     }
@@ -87,6 +100,7 @@ const SearchInputs = (props) => {
             </ListGroup>       
         
     } 
+    {/* {selectedPerformers} */}
         
     </div>
 

@@ -29,16 +29,17 @@ const PerformerList = (props) => {
         return props.removeSelectedPerformer(performer);
     }
 
-    console.log(props.selectedPerformers)
+    console.log(props);
 
     const performer = props.selectedPerformers;
     return (
        <div className={styles.performer}>
+           {/* {performer} */}
            {performer ?
            <div>
             {performer.name}<Badge bg="danger"  style={{margin: '5px'}} data-performer={performer.name} onClick={removePerformer.bind(performer)}>REMOVE</Badge>
             <div style={{padding: '10px'}}>
-            <Image style={{height: '45px', width: '45px'}} src={performer.performer.image_path || placeholder} roundedCircle />
+            {/* <Image style={{height: '45px', width: '45px'}} src={performer.performer.image_path || placeholder} roundedCircle /> */}
             </div>
 
             

@@ -1,36 +1,59 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    input: null,
-    selectedPerformers: null,
+    // input: null,
+    selectedPerformers: [],
     movies: [],
 }
 const inputReducer = createSlice({
-    name: "input",
+    name: "performerLookup",
     initialState,
     reducers: {
-        addInput: (state, action) => {
-            // var currentState = action.payload.performerData;
-            var currentState = action.payload.results;
-            console.log(currentState)
-            return {
-                input: currentState
+        // addInput: (state, action) => {
+        //     // var currentState = action.payload.performerData;
+        //     var currentState = action.payload.results;
+        //     console.log(currentState);
+        //     return {
+        //         input: currentState
+        //     };
+
+        // },
+        // removeInput: (state, action) => {
+        //     return {
+        //         input: ''
+        //     };
+        // },
+        //split this into two reducers??
+        // addSelectedPerformer: (state, action) => {
+        addSelectedPerformer:  {
+            reducer(state, action) {
+                console.log(action.payload);
+                    
+    
+                let performer = action.payload;
+                state.selectedPerformers.unshift(performer);
+            },
+            prepare(performer) {
+                console.log(performer)
+                return {
+                    payload: performer['performer']
+                }
+
             }
 
-        },
-        removeInput: (state, action) => {
-            return {
-                input: ''
-            }
-        },
-        addSelectedPerformer: (state, action) => {
-            var selectedPerformer = action.payload;
+            //https://redux-toolkit.js.org/api/createslice
+            // var selectedPerformer = action.payload;
 
 
-            return {
-                selectedPerformers: selectedPerformer,
-                movies: selectedPerformer.movies
-            }
+            // return {
+            //     selectedPerformers: selectedPerformer,
+            //     movies: selectedPerformer.movies
+            // }
+            // state.selectedPerformers.push(selectedPerformer)
+            // console.log(selectedPerformer);
+
+
+            // state.selectedPerformers.push(selectedPerformer['performer'])
 
         },
         
@@ -44,8 +67,8 @@ const inputReducer = createSlice({
 });
 
 export const {
-    addInput,
-    removeInput,
+    // addInput,
+    // removeInput,
     addSelectedPerformer,
     removeSelectedPerformer
 } = inputReducer.actions;

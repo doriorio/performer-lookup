@@ -1,10 +1,4 @@
 
-import base from './imagepath';
-
-
-const NUM_RESULTS = 5;
-
-
 async function getResults(query, callback) {
 
     const response = await fetch(`/api/${query}`);
@@ -19,7 +13,6 @@ export const processResults = (results, callback) => {
     results = results['json'];
     var loopResults = results['results'];
 
-    let count = 0;
     // let performerData = {};
     // let performerData = [];
     
