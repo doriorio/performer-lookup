@@ -39,7 +39,7 @@ const PerformerList = (props) => {
            <div>
             {performer.name}<Badge bg="danger"  style={{margin: '5px'}} data-performer={performer.name} onClick={removePerformer.bind(performer)}>REMOVE</Badge>
             <div style={{padding: '10px'}}>
-            {/* <Image style={{height: '45px', width: '45px'}} src={performer.performer.image_path || placeholder} roundedCircle /> */}
+            <Image style={{width: '45px', borderRadius: '80%'}} src={'https://image.tmdb.org/t/p/w45/' + performer.profile_path || placeholder}  />
             </div>
 
             

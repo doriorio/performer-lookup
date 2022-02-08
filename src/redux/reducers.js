@@ -31,12 +31,24 @@ const inputReducer = createSlice({
                     
     
                 let performer = action.payload;
-                state.selectedPerformers.unshift(performer);
+
+                return {
+                    movies: performer.known_for,
+                    selectedPerformers: performer
+                }
             },
             prepare(performer) {
-                console.log(performer)
+                console.log(performer);
+
+                var known_for = performer.known_for;
+                var movies = [];
+                for (const key in known_for) {
+                    var movie = known_for[key]['title'];
+                    movies.push(movie);
+                }
                 return {
-                    payload: performer['performer']
+                    payload: performer['performer'],
+                    movies: performer['performer']['known_for']
                 }
 
             }
